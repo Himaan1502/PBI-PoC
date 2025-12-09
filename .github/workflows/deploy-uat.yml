@@ -27,25 +27,25 @@ on:
         default: true
 
 jobs:
-  approval-gate:
-    name: UAT Deployment Approval
-    runs-on: ubuntu-latest
-    # Only run if PR was merged or manual trigger or direct push
-    if: |
-      github.event_name == 'workflow_dispatch' ||
-      github.event_name == 'push' ||
-      (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
-    environment:
-      name: UAT
-    steps:
-      - name: Approval Required
-        run: |
-          echo "Deployment to UAT approved"
-          echo "Proceeding with deployment..."
+  # approval-gate:
+  #   name: UAT Deployment Approval
+  #   runs-on: ubuntu-latest
+  #   # Only run if PR was merged or manual trigger or direct push
+  #   if: |
+  #     github.event_name == 'workflow_dispatch' ||
+  #     github.event_name == 'push' ||
+  #     (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
+  #   environment:
+  #     name: UAT
+  #   steps:
+  #     - name: Approval Required
+  #       run: |
+  #         echo "Deployment to UAT approved"
+  #         echo "Proceeding with deployment..."
   
   deploy-to-uat:
     name: Deploy to UAT Workspace
-    needs: approval-gate
+    # needs: approval-gate
     uses: Himaan1502/Powerbi-Templates/.github/workflows/deploy-powerbi.yml@main
     with:
       environment: 'uat'
