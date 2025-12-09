@@ -26,7 +26,7 @@ jobs:
     name: Deploy to Dev Workspace
     uses: Himaan1502/Powerbi-Templates/.github/workflows/deploy-powerbi.yml@main
     with:
-      environment: 'dev'
+      environment: dev
       branch: 'dev'
       workspace_id: ${{ vars.DEV_WORKSPACE_ID }}
       create_release: false
