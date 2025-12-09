@@ -1,52 +1,23 @@
 # .github/workflows/deploy-uat.yml
-# Working Repository: your-org/powerbi-reports
-# Triggers on PR merge to uat branch and deploys to UAT workspace
-
+# Triggers on push to uat branch and deploys to UAT workspace
 name: Deploy to UAT
 
 on:
-  pull_request:
-    types: [closed]
-    branches:
-      - uat
-  
   push:
     branches:
       - uat
-    paths:
-      - '**.Report/**'
-      - '**.SemanticModel/**'
-      - '!**/README.md'
   
   workflow_dispatch:
 
 jobs:
-  # approval-gate:
-  #   name: UAT Deployment Approval
-  #   runs-on: ubuntu-latest
-  #   # Only run if PR was merged or manual trigger or direct push
-  #   if: |
-  #     github.event_name == 'workflow_dispatch' ||
-  #     github.event_name == 'push' ||
-  #     (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
-  #   environment:
-  #     name: UAT
-  #   steps:
-  #     - name: Approval Required
-  #       run: |
-  #         echo "Deployment to UAT approved"
-  #         echo "Proceeding with deployment..."
-  
   deploy-to-uat:
     name: Deploy to UAT Workspace
-    # needs: approval-gate
     uses: Himaan1502/Powerbi-Templates/.github/workflows/powerbi-template.yml@main
     with:
       environment: 'uat'
       branch: 'uat'
       workspace_id: ${{ vars.UAT_WORKSPACE_ID }}
-      create_release: false
-      enable_backup: ${{ github.event.inputs.enable_backup }}
+      reports_path: 'reports'
     secrets:
       AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
       AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
