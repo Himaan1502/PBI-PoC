@@ -52,7 +52,7 @@ jobs:
       branch: 'uat'
       workspace_id: ${{ vars.UAT_WORKSPACE_ID }}
       create_release: false
-      enable_backup: ${{ github.event.inputs.enable_backup || true }}
+      enable_backup: ${{ github.event.inputs.enable_backup }}
     secrets:
       AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
       AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
