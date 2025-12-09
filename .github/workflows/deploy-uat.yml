@@ -48,7 +48,7 @@ jobs:
     needs: approval-gate
     uses: Himaan1502/Powerbi-Templates/.github/workflows/deploy-powerbi.yml@main
     with:
-      environment: 'uat'
+      environment: uat
       branch: 'uat'
       workspace_id: ${{ vars.UAT_WORKSPACE_ID }}
       create_release: false
