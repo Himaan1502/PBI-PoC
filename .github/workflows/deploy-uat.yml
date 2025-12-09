@@ -19,12 +19,6 @@ on:
       - '!**/README.md'
   
   workflow_dispatch:
-    inputs:
-      enable_backup:
-        description: 'Create backup before deployment'
-        required: false
-        type: boolean
-        default: true
 
 jobs:
   # approval-gate:
