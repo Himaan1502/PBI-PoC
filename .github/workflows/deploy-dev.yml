@@ -24,7 +24,7 @@ on:
 jobs:
   deploy-to-dev:
     name: Deploy to Dev Workspace
-    uses: your-org/powerbi-cicd-templates/.github/workflows/deploy-powerbi.yml@main
+    uses: Himaan1502/Powerbi-Templates/.github/workflows/deploy-powerbi.yml@main
     with:
       environment: 'dev'
       branch: 'dev'
