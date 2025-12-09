@@ -22,11 +22,23 @@ on:
         default: false
 
 jobs:
+  # Job 1: Makes Dev environment secrets available
+  dev-gate:
+    name: Dev Deployment Gate
+    runs-on: ubuntu-latest
+    environment:
+      name: Dev  # ← THIS accesses Dev environment secrets
+    steps:
+      - name: Ready to Deploy
+        run: echo "Ready to deploy to Dev"
+  
+  # Job 2: Calls reusable workflow
   deploy-to-dev:
     name: Deploy to Dev Workspace
+    needs: dev-gate  # ← Wait for dev-gate (which has access to secrets)
     uses: Himaan1502/Powerbi-Templates/.github/workflows/deploy-powerbi.yml@main
     with:
-      environment: dev
+      environment: 'dev'
       branch: 'dev'
       workspace_id: ${{ vars.DEV_WORKSPACE_ID }}
       create_release: false
