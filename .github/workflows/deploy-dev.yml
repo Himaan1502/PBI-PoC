@@ -1,0 +1,37 @@
+# .github/workflows/deploy-dev.yml
+# Working Repository: your-org/powerbi-reports
+# Triggers on push to dev branch and deploys to Dev workspace
+
+name: Deploy to Dev
+
+on:
+  push:
+    branches:
+      - dev
+    paths:
+      - '**.Report/**'
+      - '**.SemanticModel/**'
+      - '!**/README.md'
+  
+  workflow_dispatch:
+    inputs:
+      force_deploy:
+        description: 'Force deployment even if no changes detected'
+        required: false
+        type: boolean
+        default: false
+
+jobs:
+  deploy-to-dev:
+    name: Deploy to Dev Workspace
+    uses: Himaan1502/Powerbi-Templates/.github/workflows/deploy-powerbi.yml@main
+    with:
+      environment: 'dev'
+      branch: 'dev'
+      workspace_id: ${{ vars.DEV_WORKSPACE_ID }}
+      create_release: false
+      enable_backup: false
+    secrets:
+      AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+      AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+      AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
