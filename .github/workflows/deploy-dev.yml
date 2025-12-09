@@ -28,7 +28,7 @@ jobs:
     with:
       environment: 'dev'
       branch: 'dev'
-      workspace_id: ${{ secrets.DEV_WORKSPACE_ID }}
+      workspace_id: ${{ vars.DEV_WORKSPACE_ID }}
       create_release: false
       enable_backup: false
     secrets:
