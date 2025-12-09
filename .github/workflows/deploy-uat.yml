@@ -40,7 +40,7 @@ jobs:
   deploy-to-uat:
     name: Deploy to UAT Workspace
     # needs: approval-gate
-    uses: Himaan1502/Powerbi-Templates/.github/workflows/deploy-powerbi.yml@main
+    uses: Himaan1502/Powerbi-Templates/.github/workflows/powerbi-template.yml@main
     with:
       environment: 'uat'
       branch: 'uat'
