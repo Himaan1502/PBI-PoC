@@ -12,7 +12,7 @@ on:
 jobs:
   deploy-to-uat:
     name: Deploy to UAT Workspace
-    uses: Himaan1502/Powerbi-Templates/.github/workflows/powerbi-template.yml@main
+    uses: Himaan1502/Powerbi-Templates/.github/workflows/powerbi-template2.yml@main
     with:
       environment: 'uat'
       branch: 'uat'
